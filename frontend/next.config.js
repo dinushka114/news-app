@@ -1,8 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['localhost'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'news-backend.azurewebsites.net',
+                port: '',
+                pathname: '/uploads/**',
+            },
+        ],
     },
+    output: 'standalone',
 }
 
 module.exports = nextConfig
