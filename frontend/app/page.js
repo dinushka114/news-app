@@ -35,7 +35,7 @@ export default async function Home() {
                     <div className="px-6 py-4">
                       <div className="font-bold text-xl mb-2">{news.title}</div>
                       <p className="text-gray-700 text-base">
-                        {ReactHtmlParser(news.content.substr(0, 30))} <Link href={`/news/${news._id}`} className="text-blue-500">[...]</Link>
+                        {ReactHtmlParser(news.content.substr(0, 80))} <Link href={`/news/${news._id}`} className="text-blue-500">[...]</Link>
                       </p>
                     </div>
                     <div className="px-6 py-4">
