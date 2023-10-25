@@ -12,8 +12,6 @@ import { API } from '../../../constants'
 
 const NewsComments = ({ comments, id }) => {
 
-    console.log(comments);
-
     const [sessionData, setSessionData] = useState(null);
     const [comment, setComment] = useState('')
     const [newsComments, setComments] = useState(comments);

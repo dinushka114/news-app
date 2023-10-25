@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import dynamic from 'next/dynamic';
 import Label from '../label/Label'
 import TextInput from '../input/textinput/TextInput'
@@ -18,18 +18,33 @@ const QuillEditor = dynamic(() => import('react-quill'), { ssr: false });
 
 const AdminCreateNews = () => {
 
-
     const router = useRouter();
 
     const { addNewsArticle } = useContext(AppContext);
     const [content, setContent] = useState('')
-
     const [newsData, setNewsData] = useState({
         title: '',
         content: '',
         isPublished: '',
         image: null
     })
+    const [sessionData, setSessionData] = useState(null);
+
+    useEffect(() => {
+        const getUserName = async () => {
+            const response = await fetch("/api", {
+                method: "GET"
+            })
+
+            const res_json = await response.json();
+            setSessionData(res_json)
+        }
+
+
+        getUserName();
+
+    }, [])
+
 
 
     const quillModules = {
@@ -88,6 +103,7 @@ const AdminCreateNews = () => {
         formData.append("id", news_id);
         formData.append("title", newsData.title);
         formData.append("content", content);
+        formData.append("author", sessionData.session.user.name);
         formData.append("isPublished", pubOrNot);
         formData.append("image", newsData.image);
 

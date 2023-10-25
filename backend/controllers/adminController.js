@@ -4,7 +4,7 @@ import News from '../models/newsModel.js';
 const createNewsArticle = asyncHandler(async (req, res) => {
     const { image } = req.files;
 
-    const { id, title, content, isPublished } = req.body;
+    const { id, title, author, content, isPublished } = req.body;
 
     if (image) {
         image.mv('public/uploads/' + image.name);
@@ -14,6 +14,7 @@ const createNewsArticle = asyncHandler(async (req, res) => {
         news_id: id,
         title,
         content,
+        author,
         isPublished,
         image: image.name
     });
@@ -50,9 +51,9 @@ const updateNewsArticle = asyncHandler(async (req, res) => {
 
     let image = null;
 
-    if(!req.files){
+    if (!req.files) {
         image = req.body.image;
-    }else{
+    } else {
         image = req.files.image;
         image.mv('public/uploads/' + image.name);
     }

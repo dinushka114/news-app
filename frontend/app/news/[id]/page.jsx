@@ -27,7 +27,7 @@ const NewsArticle = async ({ params: { id } }) => {
                 <div class="w-full bg-cover bg-center" style={{ backgroundImage: `url(${API}/uploads/${article.image})`, height: '32rem' }}>
                     <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50">
                         <div class="text-center">
-                            <h1 class="text-white text-2xl font-semibold uppercase md:text-3xl">{article.title} <span class="underline text-blue-400 text-sm">by admin</span></h1>
+                            <h1 class="text-white text-2xl font-semibold uppercase md:text-3xl">{article.title.substr(0,30)}... <span class="underline text-blue-400 text-sm">{article.author ? article.author : ''}</span></h1>
                         </div>
                     </div>
                 </div>
