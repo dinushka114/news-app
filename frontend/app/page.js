@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "./components/nav/Navbar";
 import ReactHtmlParser from "react-html-parser";
+import { API } from "../constants";
 
 async function fetchArticles() {
   const response = await fetch(
-    'http://localhost:5000/api/user/articles',
+    `${API}/api/user/articles`,
     {
       cache: 'no-cache',
     }
@@ -30,7 +31,7 @@ export default async function Home() {
               return (
                 <Link href={`/news/${news._id}`}>
                   <div className="rounded-lg overflow-hidden shadow-lg">
-                    <Image className="w-full" src={"http://localhost:5000/uploads/" + news.image} width={1920} height={1080} alt={news.image} />
+                    <Image className="w-full" src={`${API}/uploads/` + news.image} width={1920} height={1080} alt={news.image} />
                     <div className="px-6 py-4">
                       <div className="font-bold text-xl mb-2">{news.title}</div>
                       <p className="text-gray-700 text-base">

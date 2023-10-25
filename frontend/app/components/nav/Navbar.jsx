@@ -1,12 +1,9 @@
 'use client'
 
-import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 import React, { useEffect , useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { authOptions } from '../../api/auth/[...nextauth]/route'
-import { LogoutButton, customSignOut } from '../../auth/auth'
-import Button from '../button/button'
+import { LogoutButton } from '../../auth/auth'
 
 const Navbar = () => {
     const [sessionData, setSessionData] = useState(null);
@@ -19,8 +16,6 @@ const Navbar = () => {
             const res_json = await response.json();
             setSessionData(res_json)
         }
-
-
         getUserName();
     }, [])
 

@@ -7,6 +7,7 @@ import Button from '../../../button/button'
 import AppContext from "../../../../../context/AppContext"
 import { useContext } from 'react'
 import { useRouter } from 'next/navigation'
+import { API } from '../../../../../constants'
 
 
 const StudentTableRow = ({ title, content, image, isPublished, updateNews, deleteNews }) => {
@@ -22,7 +23,7 @@ const StudentTableRow = ({ title, content, image, isPublished, updateNews, delet
     const deleteSingleNews = async (id) => {
         deleteNewsArticle(id)
 
-        const response = await fetch(`http://localhost:5000/api/admin/delete-article/${id}`, {
+        const response = await fetch(`${API}/api/admin/delete-article/${id}`, {
             method: 'DELETE'
         })
 

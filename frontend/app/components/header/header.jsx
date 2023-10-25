@@ -3,7 +3,6 @@
 import React from 'react'
 import Button from '../button/button'
 import Link from 'next/link'
-import { LogoutButton } from '../../auth/auth'
 import { signOut } from 'next-auth/react'
 
 const Header = () => {

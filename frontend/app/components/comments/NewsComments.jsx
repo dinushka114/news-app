@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import TextArea from '../input/textarea/TextArea'
 import Button from '../button/button'
+import { API } from '../../../constants'
 
 
 const NewsComments = ({ comments, id }) => {
@@ -43,7 +44,7 @@ const NewsComments = ({ comments, id }) => {
 
         e.preventDefault();
 
-        const response = await fetch(`http://localhost:5000/api/user/article/add-comment/${id}`, {
+        const response = await fetch(`${API}/api/user/article/add-comment/${id}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -65,7 +66,6 @@ const NewsComments = ({ comments, id }) => {
     return (
         <div className='mb-10'>
             <h1 className='text-xl font-semibold'>Add new comment {`(${comments.length})`}</h1>
-            {/* <h1>{sessionData.session.user.name}</h1> */}
             {
                 status === "loading" ? <span> You need <Link className='font-bold' href={'/auth/user/login'}>login</Link> to add a comment </span> : <>
                     <form onSubmit={onSubmit} className='mb-6'>

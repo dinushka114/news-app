@@ -5,6 +5,7 @@ import Label from '../label/Label'
 import TextInput from '../input/textinput/TextInput'
 import Button from '../button/button'
 import { useRouter } from 'next/navigation'
+import { API } from '../../../constants'
 
 const UserRegisterForm = () => {
 
@@ -20,7 +21,7 @@ const UserRegisterForm = () => {
         e.preventDefault();
         
         try {
-            const res = await fetch("http://localhost:5000/api/auth/register" , {
+            const res = await fetch(`${API}/api/auth/register` , {
                 method:'POST',
                 body:JSON.stringify({
                     name:userData.name,

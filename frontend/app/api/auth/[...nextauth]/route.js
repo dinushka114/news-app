@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { API } from '../../../../constants';
 
 export const authOptions = {
     pages: {
@@ -26,7 +27,7 @@ export const authOptions = {
                 }
 
                 if (credentials.role == "User") {
-                    const response = await fetch("http://localhost:5000/api/auth/user-login", {
+                    const response = await fetch(`${API}/api/auth/user-login`, {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -53,7 +54,7 @@ export const authOptions = {
                         randomKey: 'Hey cool'
                     }
                 } else if (credentials.role == "Admin") {
-                    const response = await fetch("http://localhost:5000/api/auth/admin-login", {
+                    const response = await fetch(`${API}/api/auth/admin-login`, {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -88,7 +89,6 @@ export const authOptions = {
     ],
     callbacks: {
         session: ({ session, token }) => {
-            console.log('Session Callback', { session, token })
             return {
                 ...session,
                 user: {
@@ -100,7 +100,6 @@ export const authOptions = {
             }
         },
         jwt: ({ token, user }) => {
-            console.log('JWT Callback', { token, user })
             if (user) {
                 const u = user
                 return {

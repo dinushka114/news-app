@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import dynamic from 'next/dynamic';
 import Label from '../label/Label'
 import TextInput from '../input/textinput/TextInput'
-import TextArea from '../input/textarea/TextArea'
 import Button from '../button/button'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -12,6 +11,7 @@ import AppContext from '../../../context/AppContext'
 import { useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import 'react-quill/dist/quill.snow.css';
+import { API } from '../../../constants';
 
 const QuillEditor = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -93,7 +93,7 @@ const AdminCreateNews = () => {
         addNewsArticle(news_id, newsData.title, content, image, pubOrNot);
 
         try {
-            const response = await fetch("http://localhost:5000/api/admin/new-article", {
+            const response = await fetch(`${API}/api/admin/new-article`, {
                 method: "POST",
                 body: formData
             })
@@ -138,7 +138,6 @@ const AdminCreateNews = () => {
 
             <div className="w-full mb-6 mt-6 md:mb-0">
                 <Label lbl={"Content"} />
-                {/* <TextArea value={newsData.content} onChange={(e) => setNewsData({ ...newsData, content: e.target.value })} type={'text'} placeholder={'News content'} /> */}
                 <div className="h-full">
                     <QuillEditor
                         value={content}

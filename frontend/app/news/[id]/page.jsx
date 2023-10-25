@@ -2,10 +2,11 @@ import NewsComments from '../../components/comments/NewsComments';
 import React from 'react'
 import Navbar from '../../components/nav/Navbar';
 import ReactHtmlParser from "react-html-parser";
+import { API } from "../../../constants";
 
 async function fetchArticle(id) {
     const response = await fetch(
-        `http://localhost:5000/api/user/article/${id}`,
+        `${API}/api/user/article/${id}`,
         {
             cache: 'no-cache',
         }
@@ -23,7 +24,7 @@ const NewsArticle = async ({ params: { id } }) => {
         <div>
             <Navbar />
             <header>
-                <div class="w-full bg-cover bg-center" style={{ backgroundImage: `url(http://localhost:5000/uploads/${article.image})`, height: '32rem' }}>
+                <div class="w-full bg-cover bg-center" style={{ backgroundImage: `url(${API}/uploads/${article.image})`, height: '32rem' }}>
                     <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50">
                         <div class="text-center">
                             <h1 class="text-white text-2xl font-semibold uppercase md:text-3xl">{article.title} <span class="underline text-blue-400 text-sm">by admin</span></h1>
