@@ -12,6 +12,7 @@ import AppContext from '../../../context/AppContext'
 import { useContext } from 'react'
 import 'react-quill/dist/quill.snow.css';
 import { API } from '../../../constants';
+import Heading from '../text/Heading';
 
 const QuillEditor = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -115,7 +116,7 @@ const AdminUpdateNews = () => {
 
     return (
         <form onSubmit={onSubmit}>
-            <h1 className='text-xl font-bold'>Update news</h1>
+            <Heading text={'Update'} />
 
             <div className="w-full mb-6 mt-6 md:mb-0">
                 <Label lbl={"Image"} />

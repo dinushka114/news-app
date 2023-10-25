@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Label from '../label/Label'
 import TextInput from '../input/textinput/TextInput'
 import Button from '../button/button'
+import Heading from '../text/Heading';
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import AppContext from '../../../context/AppContext'
@@ -111,7 +112,7 @@ const AdminCreateNews = () => {
 
     return (
         <form onSubmit={onSubmit}>
-            <h1 className='text-xl font-bold'>New news</h1>
+              <Heading text={'Add new'} />
 
             <div className="w-full mb-6 mt-6 md:mb-0">
                 <Label lbl={"Image"} />
