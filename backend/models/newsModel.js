@@ -24,7 +24,6 @@ const newsSchema = mongoose.Schema(
         },
         author: {
             type: String,
-            required: true,
         },
         comments: {
             type: [Object]

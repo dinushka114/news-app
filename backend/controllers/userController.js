@@ -22,22 +22,28 @@ const getArticleById = asyncHandler(async (req, res) => {
 
 const addComment = asyncHandler(async (req, res) => {
 
-    const { name, comment } = req.body;
-    const articleId = req.params.id;
+    try {
+        const { name, comment } = req.body;
 
-    const newsArticle = await News.findOne({ _id: articleId });
+        const articleId = req.params.id;
 
-    const newComment = {
-        user: name,
-        comment
-    }
+        const newsArticle = await News.findOne({ _id: articleId });
 
-    newsArticle.comments.push(newComment);
-    const updatedArticle = await newsArticle.save();
-    if (updatedArticle) {
-        res.status(201).json({ message: "Commented" })
-    } else {
-        res.status(500).json({ message: "Something went wrong" });
+        const newComment = {
+            user: name,
+            comment
+        }
+
+        newsArticle.comments.push(newComment);
+        const updatedArticle = await newsArticle.save();
+
+        if (updatedArticle) {
+            res.status(201).json({ message: "Commented" })
+        } else {
+            res.status(500).json({ message: "Something went wrong" });
+        }
+    } catch (err) {
+        console.log(err)
     }
 
 })

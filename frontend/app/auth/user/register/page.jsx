@@ -7,7 +7,7 @@ const UserRegister = () => {
     <>
       <Navbar />
       <div className='w-screen flex justify-center items-center'>
-        <div className="p-4 mt-20 bg-white rounded-md text-black w-[600px]">
+        <div className="p-4 mt-20 bg-white rounded-md text-black w-[600px] shadow-lg">
 
           <h1 className='text-2xl font-semibold'>Register</h1>
 
