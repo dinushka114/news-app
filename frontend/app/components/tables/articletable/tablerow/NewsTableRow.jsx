@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import React from 'react'
 import Button from '../../../button/button'
+import ReactHTMLParser from "react-html-parser";
 
 import AppContext from "../../../../../context/AppContext"
 import { useContext } from 'react'
@@ -37,7 +38,7 @@ const StudentTableRow = ({ title, content, image, isPublished, updateNews, delet
                 {title}
             </td>
             <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
-                <p className="text-gray-900 whitespace-no-wrap">{content.substr(0, 25)}</p>
+                <p className="text-gray-900 whitespace-no-wrap">{ReactHTMLParser(content.substr(0, 25))}</p>
             </td>
             <td className="px-2 py-2 border-b border-gray-200 bg-white text-sm">
                 <p className="text-gray-900 whitespace-no-wrap"><Image src={image} alt='image' width={100} height={80} /></p>
