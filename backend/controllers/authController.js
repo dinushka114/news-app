@@ -38,7 +38,7 @@ const registerAdminAccount = asyncHandler(async (req, res) => {
             email: user.email,
         });
     } else {
-        res.status(401).json({message:"Invalid user data"});
+        res.status(401).json({ message: "Invalid user data" });
     }
 });
 
@@ -94,24 +94,29 @@ const userLogin = asyncHandler(async (req, res, role) => {
     const user = await User.findOne({ email });
 
     // check the role 
-    if (user.role != role) {
+    if (user && user.role != role) {
         res.status(403).json({
             message: "Please make sure you are logging in from the right portal."
         });
     } else if (user && (await user.matchPassword(password))) {
-        authToken(res, user._id, role);
+        const token = authToken(res, user._id, role);
 
         res.json({
             _id: user._id,
             name: user.name,
             email: user.email,
-            role: role
+            role,
+            token
         });
     } else {
-        res.status(401).json({message:"Invalid email or password"})
+        res.status(401).json({ message: "Invalid email or password" })
     }
 })
 
+
+const validateToken = asyncHandler(async (req, res) => {
+
+})
 
 const userLogut = (req, res) => {
     res.cookie('jwt', '', {

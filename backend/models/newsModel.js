@@ -2,9 +2,16 @@ import mongoose from 'mongoose';
 
 const newsSchema = mongoose.Schema(
     {
+        news_id: {
+            type: String,
+            required: true
+        },
         title: {
             type: String,
             required: true,
+        },
+        image: {
+            type: String,
         },
         content: {
             type: String,

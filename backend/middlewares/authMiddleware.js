@@ -5,9 +5,13 @@ import User from '../models/userModel.js';
 const checkAuth = asyncHandler(async (req, res, next) => {
   let token;
 
-  token = req.cookies.jwt;
+  let authHeader = req.headers["authorization"];
 
-  if (token) {
+
+  if (authHeader) {
+
+
+    token = authHeader.split(" ")[1];
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -27,10 +31,12 @@ const checkAuth = asyncHandler(async (req, res, next) => {
 
 const checkRole = (roles) => asyncHandler(async (req, res, next) => {
   let token;
-  token = req.cookies.jwt;
 
-  if (token) {
+  let authHeader = req.headers["authorization"];
+
+  if (authHeader) {
     try {
+      token = authHeader.split(" ")[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const user = await User.findById(decoded.userId);
 

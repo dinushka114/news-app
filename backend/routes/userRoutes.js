@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get('/articles', getAllArticles);
 router.get('/article/:id', getArticleById);
-router.post('/article/add-comment/:id', checkAuth, addComment);
+router.post('/article/add-comment/:id', addComment);
 
 export default router;

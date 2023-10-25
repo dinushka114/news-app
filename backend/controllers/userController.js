@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler';
 import News from "../models/newsModel.js";
 
 const getAllArticles = asyncHandler(async (req, res) => {
-    const articles = await News.find();
+    const articles = await News.find({ isPublished: true });
     res.status(200).json(articles);
 })
 
@@ -22,13 +22,13 @@ const getArticleById = asyncHandler(async (req, res) => {
 
 const addComment = asyncHandler(async (req, res) => {
 
-    const { comment } = req.body;
+    const { name, comment } = req.body;
     const articleId = req.params.id;
 
     const newsArticle = await News.findOne({ _id: articleId });
 
     const newComment = {
-        user: req.user.name,
+        user: name,
         comment
     }
 
